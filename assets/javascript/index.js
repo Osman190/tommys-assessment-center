@@ -99,18 +99,22 @@ class ViewLayer {
     this.elements.more.addEventListener("click", (e) => {
       e.preventDefault();
       // code for task #3
+      this.elements.preview.classList.remove("preview");
     });
   }
   showAttendeesList(data){
     for (var i in data.attendees) {
-      let element = document.createElement('li');
+      let element = document.createElement('li') 
       element.classList.add('list-group-item');
-      let img = document.createElement('img')
-      img.src = data.attendees[key].image
-      element.innerHTML = data.attendees[key].name;
+      let img = document.createElement('img');
+      // First bug that we have to grab the index of the attendes object
+      img.src = data.attendees[i].image;
+      element.innerHTML = data.attendees[i].name + data.attendees[i].role;
       this.elements.aList.appendChild(element).appendChild(img);
     };
   }
+
+  // when the argument has a value it means set to an empty object in this case the passed to the parent element and the object become empty without any data inside.
   showData(data = {}){
     // here comes code for task #7
     this.elements.date.innerHTML = `<button class=\"btn\">${ data.meta.day }</button>${data.meta.month}`
